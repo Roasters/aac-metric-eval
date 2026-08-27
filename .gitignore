@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+env/
+
+# Generated outputs (scores, CAF caches, sidecars)
+results/
+figures/
+*.log
+spice_errors.log
+
+# CAF-Score is tracked as a git submodule (third_party/CAF-Score) — do not ignore it.
+
+# Datasets & model weights (never commit — see README for how to fetch)
+model_outputs/
+third_party/audiocaps_meta/
+*.wav
+*.pt
+*.ckpt
+*.bin
+*.safetensors
+
+# NLTK / HF caches occasionally dropped in-tree
+nltk_data/
+.cache/
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+*.swp

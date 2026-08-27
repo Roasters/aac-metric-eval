@@ -1,0 +1,23 @@
+# Core metric library (provides the 13 metrics + CLAP/FENSE/MACE).
+# Pinned to the version used in the paper.
+aac-metrics==0.6.0
+
+# Perturbation generation
+nltk>=3.8
+sentence-transformers>=2.2
+scikit-learn>=1.2
+
+# Numerics / IO / plotting
+numpy>=1.24
+pandas>=2.0
+scipy>=1.10
+torch>=2.0
+tqdm>=4.65
+matplotlib>=3.7
+seaborn>=0.12
+
+# NOTE: the CAF-Score / LALM-judge evaluators (caf/run_clap.py,
+# caf/run_caf_af3.py) additionally require a checkout of the external
+# CAF-Score repository (LAION-CLAP + Audio-Flamingo-3). See README "Reference-free
+# metrics". Its heavy deps (transformers, the AF3 model) are installed via that
+# repo's own environment files, not here.
