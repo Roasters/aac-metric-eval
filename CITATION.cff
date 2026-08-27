@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "Please cite the associated paper and this software release."
+title: "AAC Metric Evaluation Battery"
+type: software
+authors:
+  - name: "AAC Metric Evaluation Battery contributors"
+repository-code: "https://github.com/Roasters/aac-metric-eval"
+version: "1.0.0"
+date-released: 2026-08-27
+license: MIT

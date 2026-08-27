@@ -10,8 +10,17 @@ dist/
 venv/
 env/
 
-# Generated outputs (scores, CAF caches, sidecars)
-results/
+# Generated outputs (scores, CAF caches, sidecars). Keep the public layout.
+results/*
+!results/perturbation_pairs/
+!results/cached_scores/
+!results/tables/
+results/perturbation_pairs/*
+results/cached_scores/*
+results/tables/*
+!results/perturbation_pairs/.gitkeep
+!results/cached_scores/.gitkeep
+!results/tables/.gitkeep
 figures/
 *.log
 spice_errors.log
@@ -21,6 +30,12 @@ spice_errors.log
 # Datasets & model weights (never commit — see README for how to fetch)
 model_outputs/
 third_party/audiocaps_meta/
+data/clotho/*
+!data/clotho/README.md
+!data/clotho/manifest.example.json
+data/audiocaps/*
+!data/audiocaps/README.md
+!data/audiocaps/manifest.example.json
 *.wav
 *.pt
 *.ckpt

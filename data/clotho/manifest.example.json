@@ -1,0 +1,6 @@
+{
+  "dataset": "clotho",
+  "sources": 1045,
+  "leave_one_out_records": 5225,
+  "missing_audio_records": 0
+}

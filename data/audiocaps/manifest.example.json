@@ -1,0 +1,6 @@
+{
+  "dataset": "audiocaps",
+  "sources": 812,
+  "leave_one_out_records": 4060,
+  "missing_audio_records": 0
+}

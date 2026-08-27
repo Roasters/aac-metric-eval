@@ -1,0 +1,85 @@
+schema_version: 1
+repository_root: ..
+
+paths:
+  data_dir: data
+  results_dir: results
+
+datasets:
+  clotho:
+    root: data/clotho
+    root_env: CLOTHO_ROOT
+    captions_csv: clotho_csv_files/clotho_captions_evaluation.csv
+    audio_dir: evaluation
+    expected:
+      sources: 1045
+      leave_one_out_records: 5225
+      synonym_positions: 59142
+      synonym_replacements: 42360
+  audiocaps:
+    root: data/audiocaps/raw
+    root_env: AUDIOCAPS_ROOT
+    ondisk_eval_csv: eval_text.csv
+    audio_dir: 16000/eval
+    official_test_csv: repo:data/audiocaps/official_test.csv
+    references_csv: repo:data/audiocaps/captions_evaluation.csv
+    # Per-dataset synonym protocol: AudioCaps selects the WordNet candidate by
+    # SBERT cosine similarity to the source (overrides the global MLM selector
+    # used for Clotho). The replaced-position count is selector-independent.
+    synonym:
+      selector: embedding
+      model: sentence-transformers/all-MiniLM-L6-v2
+    expected:
+      sources: 812
+      leave_one_out_records: 4060
+      synonym_positions: 42989
+      synonym_replacements: 36095
+
+perturbations:
+  core_axes: [masking, synonym, swap_adjacent]
+  fixed_nonword: xkqjvz
+  random_seed: 42
+  random_nonword_length: 6
+  synonym:
+    # Default / Clotho protocol: rank WordNet candidates by RoBERTa MLM
+    # probability. AudioCaps overrides this to SBERT (see datasets.audiocaps.synonym).
+    selector: mlm
+    model: roberta-base
+    top_k: 250
+    # These are false in the camera-ready protocol. Set true only for the
+    # single-token/content-word ablation.
+    single_token_only: false
+    content_words_only: false
+    device: auto
+
+evaluation:
+  batch_size: 1024
+  device: auto
+  spice_failure_policy: isolate
+  spice_java_memory: 16G
+  metrics:
+    - bleu_1
+    - bleu_2
+    - bleu_3
+    - bleu_4
+    - rouge_l
+    - meteor
+    - cider_d
+    - spice
+    - spider
+    - fense
+    - clap_sim_text
+    - sbert_sim
+    - clap_sim_audio
+
+caf:
+  source_dir: third_party/CAF-Score
+  pair_manifest: caf_pairs.jsonl
+  cache_file: caf_cache.json
+  key_mode: basename
+  clap_model: laionclap
+  fleur_model: audioflamingo3
+  alpha: 0.8
+  clap_flush_every: 2000
+  fleur_flush_every: 100
+  max_new_tokens: 16

@@ -1,11 +1,13 @@
-# Core metric library (provides the 13 metrics + CLAP/FENSE/MACE).
-# Pinned to the version used in the paper.
-aac-metrics==0.6.0
+# Core metric library (provides the 13 metrics: BLEU/ROUGE/METEOR/CIDEr-D/SPICE/
+# SPIDEr/FENSE/SBERT-sim/CLAP-sim). Pinned to the version used in the paper.
+aac-metrics==0.5.5
 
 # Perturbation generation
 nltk>=3.8
 sentence-transformers>=2.2
 scikit-learn>=1.2
+transformers>=4.41,<5
+PyYAML>=6.0
 
 # Numerics / IO / plotting
 numpy>=1.24
@@ -16,8 +18,7 @@ tqdm>=4.65
 matplotlib>=3.7
 seaborn>=0.12
 
-# NOTE: the CAF-Score / LALM-judge evaluators (caf/run_clap.py,
-# caf/run_caf_af3.py) additionally require a checkout of the external
-# CAF-Score repository (LAION-CLAP + Audio-Flamingo-3). See README "Reference-free
-# metrics". Its heavy deps (transformers, the AF3 model) are installed via that
-# repo's own environment files, not here.
+# NOTE: the `clap` and `fleur` stages in scripts/run_evaluation.py additionally
+# require the CAF-Score submodule (LAION-CLAP + Audio-Flamingo-3). See README
+# "Run CAF-Score and FLEUR". Its heavy dependencies and AF3 model are installed
+# through that repository's environment files, not here.
